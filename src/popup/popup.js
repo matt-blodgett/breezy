@@ -1,11 +1,11 @@
 function listenForClicks() {
-  document.addEventListener("click", (e) => {
+  document.addEventListener("click", (event) => {
     function test(tabs) {
       console.log("test from popup.js");
     }
 
     function popupButtonClicked(tabs) {
-      const action = e.target.textContent;
+      const action = event.target.textContent;
       if (action === "Test1") {
         test(tabs);
       } else if (action === "Test2") {
@@ -19,7 +19,7 @@ function listenForClicks() {
       console.error(`Error: ${error}`);
     }
 
-    if (e.target.tagName !== "BUTTON" || !e.target.closest("#popup-content")) {
+    if (event.target.tagName !== "BUTTON" || !event.target.closest("#popup-content")) {
       return;
     }
 
