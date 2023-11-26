@@ -10,11 +10,7 @@
     "96": "icons/icon-96.png"
   },
 
-  "permissions": [
-    "scripting",
-    "activeTab",
-    "storage"
-  ],
+  "permissions": ["scripting", "activeTab", "storage"],
 
   "action": {
     "default_title": "Breezy",

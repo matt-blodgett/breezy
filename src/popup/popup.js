@@ -3,7 +3,6 @@ function reportError(error) {
 }
 
 function listenForClicks() {
-
   document.addEventListener("click", (event) => {
     function test(tabs) {
       console.log("test from popup.js");
@@ -14,15 +13,20 @@ function listenForClicks() {
       if (action === "Test1") {
         test(tabs);
       } else if (action === "Test2") {
-        browser.tabs.sendMessage(tabs[0].id, {
-          command: "test"
-        }).then(response => {
-          console.log(response)
-        });
+        browser.tabs
+          .sendMessage(tabs[0].id, {
+            command: "test",
+          })
+          .then((response) => {
+            console.log(response);
+          });
       }
     }
 
-    if (event.target.tagName !== "BUTTON" || !event.target.closest("#popup-content")) {
+    if (
+      event.target.tagName !== "BUTTON" ||
+      !event.target.closest("#popup-content")
+    ) {
       return;
     }
 
@@ -41,20 +45,17 @@ function reportExecuteScriptError(error) {
 
 function injectScripts(tabs) {
   browser.scripting
-  .executeScript({
-    target: {
-      tabId: tabs[0].id
-    },
-    files: [
-      "/scripts/third_party/browser-polyfill.js",
-      "/scripts/test.js" 
-    ]
-  })
-  .then(listenForClicks)
-  .catch(reportExecuteScriptError);
+    .executeScript({
+      target: {
+        tabId: tabs[0].id,
+      },
+      files: ["/scripts/third_party/browser-polyfill.js", "/scripts/test.js"],
+    })
+    .then(listenForClicks)
+    .catch(reportExecuteScriptError);
 }
 
 browser.tabs
   .query({ currentWindow: true, active: true })
   .then(injectScripts)
-  .catch(reportError)
+  .catch(reportError);
