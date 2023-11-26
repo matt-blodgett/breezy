@@ -1,0 +1,31 @@
+html,
+body {
+  width: 100px;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  border: none;
+  width: 100%;
+  margin: 3% auto;
+  padding: 4px;
+  text-align: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  background-color: #e5f2f2;
+}
+
+button:hover {
+  background-color: #cff2f2;
+}
+
+button[type="close"] {
+  background-color: #fbfbc9;
+}
+
+button[type="close"]:hover {
+  background-color: #eaea9d;
+}
